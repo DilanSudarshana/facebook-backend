@@ -29,9 +29,12 @@ class PostModel extends CI_Model
     }
 
     public function get_post_by_id($id) {
-        $this->db->where('user_id', $id);
-        $query = $this->db->get('posts');
+        $this->db->select('posts.*, users.first_name, users.last_name, users.image AS pro_image');
+        $this->db->from('posts');
+        $this->db->join('users', 'users.id = posts.user_id', 'left');
+        $this->db->where('posts.user_id', $id);
+        $query = $this->db->get();
         return $query->result();
-    }
+    }    
 
 }
