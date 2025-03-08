@@ -64,8 +64,9 @@ $route['user/login']='facebook/UserController/login';
 // $route['user/delete/(:any)']='facebook/UserController/deleteUser/$1';
 
 //posts related routes
-$route['index']='facebook/PostController/index';
-$route['index/delete/(:any)']='facebook/PostController/index/$1';
+$route['posts']='facebook/PostController/index';
+$route['posts/(:any)']='facebook/PostController/post_find/$1';
+$route['posts/delete/(:any)']='facebook/PostController/posts/$1';
 
 //status related routes
 $route['status']='facebook/StatusController/index';

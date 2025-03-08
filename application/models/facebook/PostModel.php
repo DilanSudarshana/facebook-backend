@@ -28,4 +28,10 @@ class PostModel extends CI_Model
         return $this->db->where('id', $id)->delete('posts');
     }
 
+    public function get_post_by_id($id) {
+        $this->db->where('user_id', $id);
+        $query = $this->db->get('posts');
+        return $query->result();
+    }
+
 }
