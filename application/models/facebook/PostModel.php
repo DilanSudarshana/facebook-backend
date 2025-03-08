@@ -10,9 +10,11 @@ class PostModel extends CI_Model
         $this->load->database();
     }
 
-    public function get_posts()
-    {
-       $query=$this->db->get('posts');
+    public function get_posts() {
+        $this->db->select('posts.*, users.first_name, users.last_name, users.image as user_image'); 
+        $this->db->from('posts');
+        $this->db->join('users', 'users.id = posts.user_id');
+        $query = $this->db->get();
         return $query->result();
     }
 

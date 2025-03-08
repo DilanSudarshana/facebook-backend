@@ -16,6 +16,13 @@ class UserModel extends CI_Model
         return $query->result();
     }
 
+    public function find_user($id)
+    {
+        $this->db->where('id',$id);
+        $query=$this->db->get('users');
+        return $query->row();
+    }
+
     public function insert_user($data){
 
         return $this->db->insert('users',$data);

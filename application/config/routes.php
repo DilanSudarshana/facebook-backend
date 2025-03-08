@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 //user related routes
 $route['user']='facebook/UserController/index';
+$route['user/(:any)']='facebook/UserController/find/$1';
 $route['user/store']='facebook/UserController/createUser';
 $route['user/login']='facebook/UserController/login';
 
@@ -64,4 +65,7 @@ $route['user/login']='facebook/UserController/login';
 
 //posts related routes
 $route['index']='facebook/PostController/index';
-// $route['index/delete/(:any)']='facebook/PostController/index/$1';
+$route['index/delete/(:any)']='facebook/PostController/index/$1';
+
+//status related routes
+$route['status']='facebook/StatusController/index';

@@ -21,6 +21,13 @@ class UserController extends REST_Controller {
         $this->response($result,200);
     }
 
+    public function find_get($id){
+        $user=new UserModel;
+        $result=$user->find_user($id);
+        $this->response($result,200);
+    }
+
+
     public function createUser_post(){
 
         $user=new UserModel;
