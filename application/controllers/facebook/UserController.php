@@ -28,7 +28,7 @@ class UserController extends REST_Controller {
     }
 
 
-    public function createUser_post(){
+    public function index_post(){
 
         $user=new UserModel;
 
