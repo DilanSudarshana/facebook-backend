@@ -13,6 +13,7 @@ class UserController extends REST_Controller {
         $this->load->database();
         $this->load->model('facebook/UserModel');
         $this->load->helper('url');
+        $this->load->library('session');
     }
 
     //get all users
@@ -80,10 +81,27 @@ class UserController extends REST_Controller {
 
         $result =$user->check_credentials($email, $password);
 
+
         if ($result) {
+
+            $this->session->set_userdata('user_id', $result->id);
+            $this->session->set_userdata('first_name', $result->first_name);
+            $this->session->set_userdata('last_name', $result->last_name);
+            $this->session->set_userdata('dob', $result->dob);  
+            $this->session->set_userdata('email', $email);  
+            $this->session->set_userdata('logged_in', TRUE);
+
             $this->response([
                 'status' => true,
-                'message' => 'Login success'
+                'message' => 'Login success',
+                'user' => [
+                    'user_id' => $result->id,
+                    'first_name' => $result->first_name,
+                    'last_name' => $result->last_name,
+                    'dob' => $result->dob,
+                    'email' => $email,
+                    'logged_in' => true
+                ]
             ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
