@@ -48,5 +48,35 @@ class PostController extends REST_Controller {
         $result=$user->get_post_by_id($id);
         $this->response($result,200);
     }
+
+    //create post
+    public function index_post(){
+
+        $user=new PostModel();
+
+        $json_data = json_decode($this->input->raw_input_stream, true);
+
+        $data=[
+            'user_id'=>$this->input->post('user_id'),
+            'created_at'=>date('Y-m-d H:i:s'),
+            'type'=>$this->input->post('type'),
+            'description'=>$this->input->post('description'),
+            'image'=>$this->input->post('image')
+        ];
+
+        $result=$user->create_new_post($data);
+
+        if( $result>0){
+            $this->response([
+                'status'=>true,
+                'message'=>'Post created'
+            ],REST_Controller::HTTP_OK);
+        }else{
+            $this->response([
+                'status'=>false,
+                'message'=>'Failed to create user'
+            ],REST_Controller::HTTP_OK);
+        }
+    }
                         
 }

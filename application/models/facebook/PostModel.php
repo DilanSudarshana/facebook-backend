@@ -14,6 +14,7 @@ class PostModel extends CI_Model
         $this->db->select('posts.*, users.first_name, users.last_name, users.image as user_image'); 
         $this->db->from('posts');
         $this->db->join('users', 'users.id = posts.user_id');
+        $this->db->order_by('posts.id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -36,5 +37,10 @@ class PostModel extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }    
+
+    public function create_new_post($data){
+
+        return $this->db->insert('posts',$data);
+    }
 
 }
