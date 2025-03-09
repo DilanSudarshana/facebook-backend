@@ -28,20 +28,12 @@ class UserModel extends CI_Model
         return $this->db->insert('users',$data);
     }
 
-    public function check_credentials($email, $password): mixed
+    public function check_credentials($email,$password)
     {
-        $this->db->where('mobile_or_email', $email);
-        $query = $this->db->get('users');
-
-        if ($query->num_rows() > 0) {
-            $user = $query->row();
-            
-            if (password_verify($password, $user->password)) {
-                return $user;
-            }
-        }
-        return null; 
+        $this->db->where('email',$email);
+        $this->db->where('password',$password);
+        $query=$this->db->get('users');
+        return $query->row();
     }
-
 
 }

@@ -15,19 +15,21 @@ class UserController extends REST_Controller {
         $this->load->helper('url');
     }
 
+    //get all users
     public function index_get(){
         $user=new UserModel;
         $result=$user->get_user();
         $this->response($result,200);
     }
 
+    //get user by id
     public function find_get($id){
         $user=new UserModel;
         $result=$user->find_user($id);
         $this->response($result,200);
     }
 
-
+    //store user
     public function index_post(){
 
         $user=new UserModel;
@@ -59,13 +61,15 @@ class UserController extends REST_Controller {
         
     }
 
-    public function login_post(){
+    //login  user
+    public function loginUser_post(){
 
-        $this->load->model('UserModel');
+        $json_data = json_decode($this->input->raw_input_stream, true);
+        $user=new UserModel;
 
-        $email = $this->input->get_post('email');
-        $password = $this->input->get_post('password');
-
+        $email = (string)$this->input->post('email');
+        $password = (string)$this->input->post('password');
+        
         if (!$email || !$password) {
             $this->response([
                 'status' => false,
@@ -74,17 +78,12 @@ class UserController extends REST_Controller {
             return;
         }
 
-        $result = $this->UserModel->check_credentials($email, $password);
+        $result = $this-> $user->check_credentials($email, $password);
 
         if ($result) {
             $this->response([
                 'status' => true,
-                'message' => 'Login success',
-                'user' => [
-                    'id' => $result->id,
-                    'email' => $result->email,
-                    'name' => $result->name
-                ]
+                'message' => 'Login success'
             ], REST_Controller::HTTP_OK);
         } else {
             $this->response([
@@ -95,4 +94,3 @@ class UserController extends REST_Controller {
     }
                         
 }
-
