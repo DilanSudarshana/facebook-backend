@@ -78,7 +78,7 @@ class UserController extends REST_Controller {
             return;
         }
 
-        $result = $this-> $user->check_credentials($email, $password);
+        $result =$user->check_credentials($email, $password);
 
         if ($result) {
             $this->response([

@@ -30,7 +30,7 @@ class UserModel extends CI_Model
 
     public function check_credentials($email,$password)
     {
-        $this->db->where('email',$email);
+        $this->db->where('mobile_or_email',$email);
         $this->db->where('password',$password);
         $query=$this->db->get('users');
         return $query->row();
