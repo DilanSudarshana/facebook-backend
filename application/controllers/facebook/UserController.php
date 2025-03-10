@@ -88,7 +88,8 @@ class UserController extends REST_Controller {
             $this->session->set_userdata('first_name', $result->first_name);
             $this->session->set_userdata('last_name', $result->last_name);
             $this->session->set_userdata('dob', $result->dob);  
-            $this->session->set_userdata('email', $email);  
+            $this->session->set_userdata('email', $email);
+            $this->session->set_userdata('image', $result->image);    
             $this->session->set_userdata('logged_in', TRUE);
 
             $this->response([
@@ -100,7 +101,8 @@ class UserController extends REST_Controller {
                     'last_name' => $result->last_name,
                     'dob' => $result->dob,
                     'email' => $email,
-                    'logged_in' => true
+                    'logged_in' => true,
+                    'image' => $result->image,
                 ]
             ], REST_Controller::HTTP_OK);
         } else {
