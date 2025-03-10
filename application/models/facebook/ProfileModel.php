@@ -17,6 +17,14 @@ class ProfileModel extends CI_Model
         $this->db->where('user_id', $id);
         $query = $this->db->get();
         return $query->result_array();
-    }  
+    } 
+    
+    public function update_user_profile($id,$data){
+        return $this->db->where('user_id', $id)->update('profile', $data);
+    }
+
+    public function update_user($id,$data){
+        return $this->db->where('id', $id)->update('users', $data);
+    }
 
 }

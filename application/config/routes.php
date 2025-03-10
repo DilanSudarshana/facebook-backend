@@ -60,13 +60,17 @@ $route['user/(:any)']='facebook/UserController/find/$1';
 $route['user/store/data']='facebook/UserController/createUser';
 $route['login'] = 'facebook/UserController/loginUser';
 
+//profile related routes
+$route['profile/(:any)']='facebook/ProfileController/index/$1';
+$route['profile/update/(:any)']='facebook/ProfileController/updateUser/$1';
+
 
 //posts related routes
 $route['posts']='facebook/PostController/index';
 $route['posts/(:any)']='facebook/PostController/post_find/$1';
 $route['posts/delete/(:any)']='facebook/PostController/posts/$1';
 $route['posts/create']='facebook/PostController/index';
-$route['profile/(:any)']='facebook/ProfileController/index/$1';
+
 
 // $route['user/update/(:any)']='facebook/UserController/updateUser/$1';
 // $route['user/delete/(:any)']='facebook/UserController/deleteUser/$1';

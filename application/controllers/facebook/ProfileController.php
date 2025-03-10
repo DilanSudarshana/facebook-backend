@@ -29,5 +29,45 @@ class ProfileController extends REST_Controller {
        
     }
 
+    //update profile details
+    public function updateUser_put($id) {
+        
+        $user=new ProfileModel;
+        $json_data = json_decode($this->input->raw_input_stream, true);
+
+        $data_profile = [
+            'university' => $this->put('university'),
+            'school' => $this->put('school'),
+            'lives_in' => $this->put('lives_in'),
+            'address' => $this->put('address'),
+            'relationship' => $this->put('relationship'),
+            'intro' => $this->put('intro'),
+        ];
+
+        echo json_encode($data_profile);
+
+        $data_user = [
+            'first_name' => $json_data['first_name'],
+            'last_name' => $json_data['last_name'],
+        ];
+
+        echo json_encode($data_user);
+    
+        $updated_result_profile = $user->update_user_profile($id, $data_profile);
+        $updated_result_user = $user->update_user($id, $data_user);
+
+        if ($updated_result_profile && $updated_result_user) {
+            $this->response([
+                'status' => true,
+                'message' => 'User updated.'
+            ], REST_Controller::HTTP_OK);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Failed to update.'
+            ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
                         
 }
