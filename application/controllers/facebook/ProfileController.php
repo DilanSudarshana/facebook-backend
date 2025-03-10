@@ -49,6 +49,7 @@ class ProfileController extends REST_Controller {
         $data_user = [
             'first_name' => $json_data['first_name'],
             'last_name' => $json_data['last_name'],
+            'image' => $json_data['image'],
         ];
 
         echo json_encode($data_user);
