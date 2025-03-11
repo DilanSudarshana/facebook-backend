@@ -43,7 +43,7 @@ class UserController extends REST_Controller {
             'dob'=>$this->input->post('dob'),
             'gender'=>$this->input->post('gender'),
             'mobile_or_email'=>$this->input->post('mobile_or_email'),
-            'password'=>$this->input->post('password'),
+            'password'=>password_hash($this->input->post('password'),PASSWORD_BCRYPT),
         ];
 
         $result=$user->insert_user($data);
