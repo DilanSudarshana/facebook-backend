@@ -24,8 +24,6 @@ class ImageController extends REST_Controller {
 
         if($result){
             $this->response($result,200);
-        }else{
-            $this->response('error',404);
         }
        
     }

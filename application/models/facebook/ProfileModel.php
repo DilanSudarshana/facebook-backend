@@ -27,4 +27,8 @@ class ProfileModel extends CI_Model
         return $this->db->where('id', $id)->update('users', $data);
     }
 
+    public function add_post($data){
+        return $this->db->insert('posts', $data);
+    }
+
 }

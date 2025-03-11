@@ -69,7 +69,7 @@ $route['profile/update/(:any)']='facebook/ProfileController/updateUser/$1';
 $route['posts']='facebook/PostController/index';
 $route['posts/(:any)']='facebook/PostController/post_find/$1';
 $route['posts/delete/(:any)']='facebook/PostController/posts/$1';
-$route['posts/create']='facebook/PostController/index';
+$route['posts/create/new']='facebook/PostController/createPost';
 
 
 // $route['user/update/(:any)']='facebook/UserController/updateUser/$1';

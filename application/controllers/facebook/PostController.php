@@ -50,7 +50,7 @@ class PostController extends REST_Controller {
     }
 
     //create post
-    public function index_post(){
+    public function createPost_post(){
 
         $user=new PostModel();
 

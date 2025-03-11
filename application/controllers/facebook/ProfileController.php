@@ -34,7 +34,7 @@ class ProfileController extends REST_Controller {
         
         $user=new ProfileModel;
         $json_data = json_decode($this->input->raw_input_stream, true);
-
+        
         $data_profile = [
             'university' => $this->put('university'),
             'school' => $this->put('school'),
@@ -52,12 +52,20 @@ class ProfileController extends REST_Controller {
             'image' => $json_data['image'],
         ];
 
+        $data_post = [
+            'user_id' => $id,
+            'description' => $json_data['first_name'].' '.$json_data['last_name'].' updated their profile picture.',
+            'image' => $json_data['image'],
+            'type' => 2,
+        ];
+
         echo json_encode($data_user);
     
         $updated_result_profile = $user->update_user_profile($id, $data_profile);
         $updated_result_user = $user->update_user($id, $data_user);
+        $update_post=$user->add_post($data_post);
 
-        if ($updated_result_profile && $updated_result_user) {
+        if ($updated_result_profile && $updated_result_user && $update_post) {
             $this->response([
                 'status' => true,
                 'message' => 'User updated.'
