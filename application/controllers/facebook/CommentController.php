@@ -19,14 +19,14 @@ class CommentController extends REST_Controller {
         echo "Hellow world";
     }
 
-    public function addComment_post(){
+    public function addComment_post($id){
 
         $json_data = json_decode($this->input->raw_input_stream, true);
         $comment=new CommentModel();
 
         $comment_data=[
             'user_id'=>$this->input->post('user_id'),
-            'post_id'=>$this->input->post('post_id'),
+            'post_id'=>$id,
             'comment'=>$this->input->post('comment'),
             'status'=>1,
             'created_at'=>date('Y-m-d H:i:s'),

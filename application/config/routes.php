@@ -80,4 +80,4 @@ $route['status']='facebook/StatusController/index';
 
 //comment related routes
 $route['comments']='facebook/CommentController/index';
-$route['comments/add']='facebook/CommentController/addComment';
+$route['comments/add/(:any)']='facebook/CommentController/addComment/$1';
