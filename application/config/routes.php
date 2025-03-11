@@ -72,11 +72,12 @@ $route['posts/delete/(:any)']='facebook/PostController/posts/$1';
 $route['posts/create/new']='facebook/PostController/createPost';
 
 
-// $route['user/update/(:any)']='facebook/UserController/updateUser/$1';
-// $route['user/delete/(:any)']='facebook/UserController/deleteUser/$1';
-
 //images related routes
 $route['posts/images/(:any)']='facebook/ImageController/index/$1';
 
 //status related routes
 $route['status']='facebook/StatusController/index';
+
+//comment related routes
+$route['comments']='facebook/CommentController/index';
+$route['comments/add']='facebook/CommentController/addComment';
