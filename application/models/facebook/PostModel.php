@@ -34,6 +34,7 @@ class PostModel extends CI_Model
         $this->db->from('posts');
         $this->db->join('users', 'users.id = posts.user_id', 'left');
         $this->db->where('posts.user_id', $id);
+        $this->db->order_by('posts.id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }    
