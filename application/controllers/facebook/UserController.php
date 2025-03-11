@@ -30,14 +30,14 @@ class UserController extends REST_Controller {
         $this->response($result,200);
     }
 
-    //store user
+    //create new  profile
     public function createUser_post(){
 
         $user=new UserModel;
 
         $json_data = json_decode($this->input->raw_input_stream, true);
 
-        $data=[
+        $data_user=[
             'first_name'=>$this->input->post('first_name'),
             'last_name'=>$this->input->post('last_name'),
             'dob'=>$this->input->post('dob'),
@@ -46,9 +46,16 @@ class UserController extends REST_Controller {
             'password'=>password_hash($this->input->post('password'),PASSWORD_BCRYPT),
         ];
 
-        $result=$user->insert_user($data);
+        $result_user=$user->insert_user($data_user);
 
-        if( $result>0){
+        if( $result_user){
+
+            $data_profile=[
+                'user_id'=>$result_user,
+            ];
+
+            $result_profile=$user->insert_profile($data_profile);
+
             $this->response([
                 'status'=>true,
                 'message'=>'User created'
