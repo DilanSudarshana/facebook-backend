@@ -30,7 +30,7 @@ class UserController extends REST_Controller {
         $this->response($result,200);
     }
 
-    //create new  profile
+    //sing up user
     public function createUser_post(){
 
         $user=new UserModel;
@@ -87,9 +87,9 @@ class UserController extends REST_Controller {
         }
 
         $result =$user->check_credentials($email, $password);
+        $password_check=password_verify($password, $result->password);
 
-
-        if ($result) {
+        if ($result && $password_check) {
 
             $this->session->set_userdata('user_id', $result->id);
             $this->session->set_userdata('first_name', $result->first_name);
