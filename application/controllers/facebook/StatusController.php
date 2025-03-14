@@ -29,7 +29,12 @@ class StatusController extends REST_Controller {
     public function createStatus_post(){
 
         $status=new StatusModel();
-        $status_data = json_decode($this->input->raw_input_stream, true);
+
+        $status_data=[
+            'user_id'=>$this->input->post('user_id'),
+            'image'=>$this->input->post('image')
+        ];
+
         $result=$status->create_new_status($status_data);
 
         if( $result>0){
