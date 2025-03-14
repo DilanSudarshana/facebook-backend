@@ -70,6 +70,9 @@ $route['posts']='facebook/PostController/index';
 $route['posts/(:any)']='facebook/PostController/post_find/$1';
 $route['posts/delete/(:any)']='facebook/PostController/posts/$1';
 $route['posts/create/new']='facebook/PostController/createPost';
+$route['posts/like/(:any)']='facebook/PostController/likePost/$1';
+
+
 
 
 //images related routes

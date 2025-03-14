@@ -44,4 +44,10 @@ class PostModel extends CI_Model
         return $this->db->insert('posts',$data);
     }
 
+    public function like_post($id){
+        $this->db->set('like_count', 'like_count+1', FALSE);
+        $this->db->where('id', $id);
+        return $this->db->update('posts');
+    }
+
 }

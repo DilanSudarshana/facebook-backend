@@ -78,5 +78,26 @@ class PostController extends REST_Controller {
             ],REST_Controller::HTTP_OK);
         }
     }
+
+    //like post
+    public function likePost_post($id){
+
+        $post=new PostModel();
+
+        $result=$post->like_post($id);
+        if($result>0){
+            $this->response([
+            'status'=>true,
+            'message'=>'Post liked'
+        ],REST_Controller::HTTP_OK);
+
+        }else{
+            $this->response([
+            'status'=>false,
+            'message'=>'Failed to like post'
+            ],REST_Controller::HTTP_OK);
+        }
+
+    }
                         
 }
