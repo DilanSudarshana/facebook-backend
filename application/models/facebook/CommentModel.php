@@ -27,4 +27,19 @@ class CommentModel extends CI_Model
 
     }
 
+    public function get_comment_count($id){
+        $this->db->select('posts.comment_count');
+        $this->db->from('posts');
+        $this->db->where('posts.id', $id);
+        return $this->db->get()->row()->comment_count;
+    }
+
+    public function store_incresed_count($id){
+
+        $this->db->set('comment_count', 'comment_count+1', FALSE);
+        $this->db->where('id', $id);
+        return $this->db->update('posts');
+
+    }
+
 }

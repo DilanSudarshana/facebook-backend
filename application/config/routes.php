@@ -81,4 +81,4 @@ $route['status/create']='facebook/StatusController/createStatus';
 
 //comment related routes
 $route['comments/find/(:any)']='facebook/CommentController/index/$1';
-$route['comments/add/(:any)']='facebook/CommentController/addComment/$1';
+$route['comments/add/(:any)']='facebook/CommentController/$1';

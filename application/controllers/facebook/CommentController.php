@@ -12,6 +12,7 @@ class CommentController extends REST_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->model('facebook/CommentModel');
+        $this->load->model('facebook/PostModel');
         $this->load->helper('url');
     }
 
@@ -22,7 +23,7 @@ class CommentController extends REST_Controller {
         $this->response($result,200);
     }
 
-    public function addComment_post($id){
+    public function index_post($id){
 
         $json_data = json_decode($this->input->raw_input_stream, true);
         $comment=new CommentModel();
@@ -36,6 +37,8 @@ class CommentController extends REST_Controller {
         ];
 
         $result=$comment->add_new_comment($comment_data);
+        $store_incresed_count=$comment->store_incresed_count($id);
+
 
         if( $result>0){
             $this->response([
