@@ -26,5 +26,24 @@ class StatusController extends REST_Controller {
        
     }
 
+    public function createStatus_post(){
+
+        $status=new StatusModel();
+        $status_data = json_decode($this->input->raw_input_stream, true);
+        $result=$status->create_new_status($status_data);
+
+        if( $result>0){
+            $this->response([
+                'status'=>true,
+                'message'=>'Status created'
+            ],REST_Controller::HTTP_OK);
+        }else{
+            $this->response([
+                'status'=>false,
+                'message'=>'Failed to create status'
+            ],REST_Controller::HTTP_OK);
+        }
+    }
+
 
 }

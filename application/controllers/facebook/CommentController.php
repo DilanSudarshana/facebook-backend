@@ -15,8 +15,11 @@ class CommentController extends REST_Controller {
         $this->load->helper('url');
     }
 
-    public function index_get(){
-        echo "Hellow world";
+    public function index_get($id){
+
+        $comment=new CommentModel;
+        $result=$comment->find_comment($id);
+        $this->response($result,200);
     }
 
     public function addComment_post($id){

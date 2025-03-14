@@ -77,7 +77,8 @@ $route['posts/images/(:any)']='facebook/ImageController/index/$1';
 
 //status related routes
 $route['status']='facebook/StatusController/index';
+$route['status/create']='facebook/StatusController/createStatus';
 
 //comment related routes
-$route['comments']='facebook/CommentController/index';
+$route['comments/find/(:any)']='facebook/CommentController/index/$1';
 $route['comments/add/(:any)']='facebook/CommentController/addComment/$1';
