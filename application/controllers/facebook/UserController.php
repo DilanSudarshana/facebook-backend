@@ -120,8 +120,9 @@ class UserController extends REST_Controller {
         }
     }
 
+    //logout user
     public function logoutUser_post($id){
-        
+
         $this->session->unset_userdata('user_id');
         $this->session->unset_userdata('first_name');
         $this->session->unset_userdata('last_name');
