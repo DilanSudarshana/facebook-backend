@@ -59,6 +59,7 @@ $route['user']='facebook/UserController/index';
 $route['user/(:any)']='facebook/UserController/find/$1';
 $route['user/store/data']='facebook/UserController/createUser';
 $route['login'] = 'facebook/UserController/loginUser';
+$route['logout/(:any)']='facebook/UserController/logoutUser/$1';
 
 //profile related routes
 $route['profile/(:any)']='facebook/ProfileController/index/$1';

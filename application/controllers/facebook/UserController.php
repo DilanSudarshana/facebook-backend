@@ -119,5 +119,20 @@ class UserController extends REST_Controller {
             ], REST_Controller::HTTP_OK);
         }
     }
+
+    public function logoutUser_post($id){
+        
+        $this->session->unset_userdata('user_id');
+        $this->session->unset_userdata('first_name');
+        $this->session->unset_userdata('last_name');
+        $this->session->unset_userdata('dob');
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('image');
+        $this->session->unset_userdata('logged_in');
+        $this->response([
+            'status' => true,
+            'message' => 'Logout success'
+        ], REST_Controller::HTTP_OK);
+    }
                         
 }
